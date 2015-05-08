@@ -23,6 +23,7 @@ import java.util.Map;
 
 import org.eclipse.ecf.osgi.serviceregistry.launch.BundleDescriptor;
 import org.eclipse.ecf.osgi.serviceregistry.launch.BundleFinder;
+import org.eclipse.ecf.osgi.serviceregistry.launch.BundleFinderException;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleEvent;
@@ -138,7 +139,11 @@ public class PojoServiceRegistryFramework implements Framework {
 		List<BundleDescriptor> bundleDescriptors = new ArrayList<BundleDescriptor>();
 
 		for (BundleFinder bs : this.bundleFinder)
-			bundleDescriptors.addAll(bs.findBundles());
+			try {
+				bundleDescriptors.addAll(bs.findBundles());
+			} catch (BundleFinderException e) {
+				throw new BundleException("Could not find bundles", e);
+			}
 
 		this.serviceRegistry.initBundles(bundleDescriptors);
 

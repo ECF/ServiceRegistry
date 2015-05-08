@@ -30,7 +30,6 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
-import org.osgi.framework.BundleException;
 import org.osgi.framework.Filter;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.InvalidSyntaxException;
@@ -58,13 +57,14 @@ public class ClasspathBundleFinder implements BundleFinder {
 	}
 
 	@Override
-	public Collection<BundleDescriptor> findBundles() throws BundleException {
+	public Collection<BundleDescriptor> findBundles()
+			throws BundleFinderException {
 		Filter filter;
 		try {
 			filter = (this.filter != null) ? FrameworkUtil
 					.createFilter(this.filter) : null;
 		} catch (InvalidSyntaxException e1) {
-			throw new BundleException("Could not create filter", e1);
+			throw new BundleFinderException("Could not create filter", e1);
 		}
 
 		ClassLoader loader = (classLoader != null) ? classLoader : getClass()
@@ -113,7 +113,7 @@ public class ClasspathBundleFinder implements BundleFinder {
 								last = current + 1;
 								continue;
 							} else {
-								throw new BundleException(
+								throw new BundleFinderException(
 										"Manifest error: Missing space separator - "
 												+ key);
 							}
@@ -125,11 +125,11 @@ public class ClasspathBundleFinder implements BundleFinder {
 							String value = new String(bytes, last,
 									(current - last), "UTF-8");
 							if (key == null) {
-								throw new BundleException(
+								throw new BundleFinderException(
 										"Manifst error: Missing attribute name - "
 												+ value);
 							} else if (headers.put(key, value) != null) {
-								throw new BundleException(
+								throw new BundleFinderException(
 										"Manifst error: Duplicate attribute name - "
 												+ key);
 							}
@@ -150,7 +150,7 @@ public class ClasspathBundleFinder implements BundleFinder {
 				}
 			}
 		} catch (IOException e) {
-			throw new BundleException("Could not read from jar", e);
+			throw new BundleFinderException("Could not read from jar", e);
 		}
 		return bundles;
 	}

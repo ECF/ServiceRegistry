@@ -30,11 +30,11 @@ import de.kalpatec.pojosr.framework.PojoSR;
 public class PojoServiceRegistry implements ServiceRegistry {
 
 	private final PojoSR pojoSR;
-	
+
 	public PojoServiceRegistry(PojoSR pojoSR) {
 		this.pojoSR = pojoSR;
 	}
-	
+
 	List<de.kalpatec.pojosr.framework.launch.BundleDescriptor> convertBundleDescriptors(
 			Collection<BundleDescriptor> bundles) {
 		List<de.kalpatec.pojosr.framework.launch.BundleDescriptor> results = new ArrayList<de.kalpatec.pojosr.framework.launch.BundleDescriptor>();
@@ -59,8 +59,8 @@ public class PojoServiceRegistry implements ServiceRegistry {
 	}
 
 	@Override
-	public void addServiceListener(ServiceListener listener,
-			String filter) throws InvalidSyntaxException {
+	public void addServiceListener(ServiceListener listener, String filter)
+			throws InvalidSyntaxException {
 		pojoSR.addServiceListener(listener, filter);
 	}
 
@@ -81,22 +81,20 @@ public class PojoServiceRegistry implements ServiceRegistry {
 	}
 
 	@Override
-	public ServiceRegistration<?> registerService(String clazz,
-			Object service, Dictionary<String, ?> properties) {
-		return pojoSR.registerService(clazz, service, properties);
-	}
-
-	@Override
-	public <S> ServiceRegistration<S> registerService(
-			Class<S> clazz, S service,
+	public ServiceRegistration<?> registerService(String clazz, Object service,
 			Dictionary<String, ?> properties) {
 		return pojoSR.registerService(clazz, service, properties);
 	}
 
 	@Override
-	public <S> ServiceRegistration<S> registerService(
-			Class<S> clazz, ServiceFactory<S> factory,
-			Dictionary<String, ?> properties) {
+	public <S> ServiceRegistration<S> registerService(Class<S> clazz,
+			S service, Dictionary<String, ?> properties) {
+		return pojoSR.registerService(clazz, service, properties);
+	}
+
+	@Override
+	public <S> ServiceRegistration<S> registerService(Class<S> clazz,
+			ServiceFactory<S> factory, Dictionary<String, ?> properties) {
 		return pojoSR.registerService(clazz, factory, properties);
 	}
 
@@ -107,9 +105,8 @@ public class PojoServiceRegistry implements ServiceRegistry {
 	}
 
 	@Override
-	public ServiceReference<?>[] getAllServiceReferences(
-			String clazz, String filter)
-			throws InvalidSyntaxException {
+	public ServiceReference<?>[] getAllServiceReferences(String clazz,
+			String filter) throws InvalidSyntaxException {
 		return pojoSR.getAllServiceReferences(clazz, filter);
 	}
 
@@ -119,21 +116,18 @@ public class PojoServiceRegistry implements ServiceRegistry {
 	}
 
 	@Override
-	public <S> ServiceReference<S> getServiceReference(
-			Class<S> clazz) {
+	public <S> ServiceReference<S> getServiceReference(Class<S> clazz) {
 		return pojoSR.getServiceReference(clazz);
 	}
 
 	@Override
 	public <S> Collection<ServiceReference<S>> getServiceReferences(
-			Class<S> clazz, String filter)
-			throws InvalidSyntaxException {
+			Class<S> clazz, String filter) throws InvalidSyntaxException {
 		return pojoSR.getServiceReferences(clazz, filter);
 	}
 
 	@Override
-	public <S> ServiceObjects<S> getServiceObjects(
-			ServiceReference<S> reference) {
+	public <S> ServiceObjects<S> getServiceObjects(ServiceReference<S> reference) {
 		// XXX todo
 		return null;
 	}

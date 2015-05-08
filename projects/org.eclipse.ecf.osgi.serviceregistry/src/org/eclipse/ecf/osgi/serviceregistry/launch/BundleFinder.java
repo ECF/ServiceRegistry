@@ -11,9 +11,7 @@ package org.eclipse.ecf.osgi.serviceregistry.launch;
 
 import java.util.Collection;
 
-import org.osgi.framework.BundleException;
-
 public interface BundleFinder {
 
-	Collection<BundleDescriptor> findBundles() throws BundleException;
+	Collection<BundleDescriptor> findBundles() throws BundleFinderException;
 }

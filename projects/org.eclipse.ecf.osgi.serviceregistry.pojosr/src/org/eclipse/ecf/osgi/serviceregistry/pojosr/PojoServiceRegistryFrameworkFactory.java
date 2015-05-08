@@ -27,10 +27,11 @@ public class PojoServiceRegistryFrameworkFactory implements FrameworkFactory {
 	public Framework newFramework(Map<String, String> configuration) {
 		ServiceRegistryFactory serviceRegistryFactory = ServiceLoader
 				.load(ServiceRegistryFactory.class).iterator().next();
-		PojoServiceRegistry serviceRegistry = (PojoServiceRegistry) serviceRegistryFactory.newServiceRegistry(configuration);
+		PojoServiceRegistry serviceRegistry = (PojoServiceRegistry) serviceRegistryFactory
+				.newServiceRegistry(configuration);
 		List<BundleFinder> bsList = new ArrayList<BundleFinder>();
-		for (Iterator<BundleFinder> i = ServiceLoader
-				.load(BundleFinder.class).iterator(); i.hasNext();)
+		for (Iterator<BundleFinder> i = ServiceLoader.load(BundleFinder.class)
+				.iterator(); i.hasNext();)
 			bsList.add(i.next());
 		if (bsList.size() == 0)
 			bsList.add(new ClasspathBundleFinder());
