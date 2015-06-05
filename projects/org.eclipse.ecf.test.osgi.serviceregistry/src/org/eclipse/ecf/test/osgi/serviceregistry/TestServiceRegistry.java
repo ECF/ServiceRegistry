@@ -56,8 +56,8 @@ public class TestServiceRegistry {
 		serviceTracker.open();
 
 		// Now register a map
-		ServiceRegistration<Map> reg = serviceRegistry.registerService(
-				Map.class, new HashMap(), null);
+		ServiceRegistration reg = serviceRegistry.registerService(
+				new String[] { Map.class.getName() }, new HashMap(), null);
 
 		System.out.println("Map service registration is: "+reg);
 		
