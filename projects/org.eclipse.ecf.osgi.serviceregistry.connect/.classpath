@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.ecf.osgi.serviceregistry"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.osgi.core.v6"/>
+	<classpathentry kind="lib" path="lib/connect/1.0.1/org.apache.felix.connect-0.1.0.jar" sourcepath="lib/connect/1.0.1/org.apache.felix.connect-0.1.0-sources.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
