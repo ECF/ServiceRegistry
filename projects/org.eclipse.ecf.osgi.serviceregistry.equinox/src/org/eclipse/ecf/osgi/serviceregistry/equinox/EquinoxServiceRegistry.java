@@ -18,12 +18,12 @@ public class EquinoxServiceRegistry implements ServiceRegistry {
 
 	private Framework framework;
 	private BundleContext bc;
-	
+
 	public EquinoxServiceRegistry(Framework framework) {
 		this.framework = framework;
 		this.bc = framework.getBundleContext();
 	}
-	
+
 	public BundleContext getBundleContext() {
 		return bc;
 	}

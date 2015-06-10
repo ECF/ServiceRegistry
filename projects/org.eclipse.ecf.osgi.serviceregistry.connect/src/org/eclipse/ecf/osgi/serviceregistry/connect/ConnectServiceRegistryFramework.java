@@ -38,11 +38,13 @@ public class ConnectServiceRegistryFramework implements Framework {
 	private final int stopWaitTime;
 	private Bundle frameworkBundle;
 
-	public ConnectServiceRegistryFramework(ConnectServiceRegistry serviceRegistry) {
-		this(serviceRegistry,STOP_WAITTIME);
+	public ConnectServiceRegistryFramework(
+			ConnectServiceRegistry serviceRegistry) {
+		this(serviceRegistry, STOP_WAITTIME);
 	}
-	
-	public ConnectServiceRegistryFramework(ConnectServiceRegistry serviceRegistry, int stopWaitTime) {
+
+	public ConnectServiceRegistryFramework(
+			ConnectServiceRegistry serviceRegistry, int stopWaitTime) {
 		this.serviceRegistry = serviceRegistry;
 		this.stopWaitTime = stopWaitTime;
 	}

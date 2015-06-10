@@ -13,10 +13,12 @@ import org.osgi.framework.launch.FrameworkFactory;
 public class EquinoxServiceRegistryFactory implements ServiceRegistryFactory {
 
 	private static final long STOP_TIMEOUT = 3000;
-	
+
 	public ServiceRegistry newServiceRegistry(Map<String, ?> configuration) {
-		FrameworkFactory frameworkFactory = ServiceLoader.load(FrameworkFactory.class).iterator().next();
-		final Framework framework = frameworkFactory.newFramework(new HashMap<String,String>());
+		FrameworkFactory frameworkFactory = ServiceLoader
+				.load(FrameworkFactory.class).iterator().next();
+		final Framework framework = frameworkFactory
+				.newFramework(new HashMap<String, String>());
 		try {
 			framework.start();
 		} catch (BundleException e) {
@@ -30,7 +32,8 @@ public class EquinoxServiceRegistryFactory implements ServiceRegistryFactory {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-			}});
+			}
+		});
 		t.start();
 		return new EquinoxServiceRegistry(framework);
 	}

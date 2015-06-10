@@ -73,13 +73,14 @@ public class ConnectServiceRegistry implements ServiceRegistry {
 	public <S> ServiceRegistration<S> registerService(Class<S> clazz,
 			S service, Dictionary<String, ?> properties) {
 		return null;
-		//pojoSR.registerService(clazz, service, properties);
+		// pojoSR.registerService(clazz, service, properties);
 	}
 
 	public <S> ServiceRegistration<S> registerService(Class<S> clazz,
 			ServiceFactory<S> factory, Dictionary<String, ?> properties) {
 		return null;
-		//pojoSR.registerService(new String[] { clazz.getName() }, factory, properties);
+		// pojoSR.registerService(new String[] { clazz.getName() }, factory,
+		// properties);
 	}
 
 	public ServiceReference<?>[] getServiceReferences(String clazz,
@@ -90,7 +91,7 @@ public class ConnectServiceRegistry implements ServiceRegistry {
 	public ServiceReference<?>[] getAllServiceReferences(String clazz,
 			String filter) throws InvalidSyntaxException {
 		return null;
-		//pojoSR.getAllServiceReferences(clazz, filter);
+		// pojoSR.getAllServiceReferences(clazz, filter);
 	}
 
 	public ServiceReference<?> getServiceReference(String clazz) {
@@ -99,13 +100,13 @@ public class ConnectServiceRegistry implements ServiceRegistry {
 
 	public <S> ServiceReference<S> getServiceReference(Class<S> clazz) {
 		return null;
-		//pojoSR.getServiceReference(clazz.getName());
+		// pojoSR.getServiceReference(clazz.getName());
 	}
 
 	public <S> Collection<ServiceReference<S>> getServiceReferences(
 			Class<S> clazz, String filter) throws InvalidSyntaxException {
 		return null;
-		//pojoSR.getServiceReferences(clazz, filter);
+		// pojoSR.getServiceReferences(clazz, filter);
 	}
 
 	public <S> ServiceObjects<S> getServiceObjects(ServiceReference<S> reference) {

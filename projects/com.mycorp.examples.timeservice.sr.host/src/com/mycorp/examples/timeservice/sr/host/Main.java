@@ -12,8 +12,7 @@ public class Main {
 	public static void main(String[] args) throws Exception {
 
 		serviceRegistry = ServiceLoader.load(ServiceRegistryFactory.class)
-				.iterator().next()
-				.newServiceRegistry(null);
+				.iterator().next().newServiceRegistry(null);
 
 		Object w = new Object();
 		synchronized (w) {
