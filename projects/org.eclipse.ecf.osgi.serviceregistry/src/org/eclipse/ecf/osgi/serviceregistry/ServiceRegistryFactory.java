@@ -13,5 +13,8 @@ import java.util.Map;
 
 public interface ServiceRegistryFactory {
 
+	public static final String BUNDLE_DESCRIPTORS = "org.eclipse.ecf.osgi.serviceregistry.bundledescriptors";
+	public static final String BUNDLE_FINDERS = "org.eclipse.ecf.osgi.serviceregistry.bundlefinders";
+	
 	ServiceRegistry newServiceRegistry(Map<String, ?> configuration);
 }

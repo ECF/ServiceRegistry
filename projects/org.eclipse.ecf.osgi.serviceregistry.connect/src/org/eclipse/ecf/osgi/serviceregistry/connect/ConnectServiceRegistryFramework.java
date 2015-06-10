@@ -14,16 +14,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.security.cert.X509Certificate;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.ecf.osgi.serviceregistry.launch.BundleDescriptor;
-import org.eclipse.ecf.osgi.serviceregistry.launch.BundleFinder;
-import org.eclipse.ecf.osgi.serviceregistry.launch.BundleFinderException;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleEvent;
@@ -39,22 +34,17 @@ public class ConnectServiceRegistryFramework implements Framework {
 
 	private static final int STOP_WAITTIME = 100;
 
-	private final Map<String, String> configuration;
 	private final ConnectServiceRegistry serviceRegistry;
-	private final Collection<BundleFinder> bundleFinder;
-
+	private final int stopWaitTime;
 	private Bundle frameworkBundle;
 
-	public ConnectServiceRegistryFramework(Map<String, String> configuration,
-			ConnectServiceRegistry serviceRegistry,
-			Collection<BundleFinder> bundleFinder) {
-		this.configuration = configuration;
-		this.serviceRegistry = serviceRegistry;
-		this.bundleFinder = bundleFinder;
+	public ConnectServiceRegistryFramework(ConnectServiceRegistry serviceRegistry) {
+		this(serviceRegistry,STOP_WAITTIME);
 	}
-
-	protected Map<String, String> getConfiguration() {
-		return this.configuration;
+	
+	public ConnectServiceRegistryFramework(ConnectServiceRegistry serviceRegistry, int stopWaitTime) {
+		this.serviceRegistry = serviceRegistry;
+		this.stopWaitTime = stopWaitTime;
 	}
 
 	public int getState() {
@@ -120,17 +110,6 @@ public class ConnectServiceRegistryFramework implements Framework {
 	}
 
 	public void init(FrameworkListener... listeners) throws BundleException {
-		List<BundleDescriptor> bundleDescriptors = new ArrayList<BundleDescriptor>();
-
-		for (BundleFinder bs : this.bundleFinder)
-			try {
-				bundleDescriptors.addAll(bs.findBundles());
-			} catch (BundleFinderException e) {
-				throw new BundleException("Could not find bundles", e);
-			}
-
-		this.serviceRegistry.initBundles(bundleDescriptors);
-
 		this.frameworkBundle = this.serviceRegistry.getBundleContext()
 				.getBundle();
 	}
@@ -151,7 +130,7 @@ public class ConnectServiceRegistryFramework implements Framework {
 		synchronized (lock) {
 			while (frameworkBundle.getState() != Bundle.RESOLVED) {
 				if (frameworkBundle.getState() == Bundle.STOPPING)
-					lock.wait(STOP_WAITTIME);
+					lock.wait(stopWaitTime);
 				else
 					lock.wait();
 			}

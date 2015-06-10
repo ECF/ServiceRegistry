@@ -9,15 +9,10 @@
  ******************************************************************************/
 package org.eclipse.ecf.osgi.serviceregistry.connect;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.ServiceLoader;
 
 import org.eclipse.ecf.osgi.serviceregistry.ServiceRegistryFactory;
-import org.eclipse.ecf.osgi.serviceregistry.launch.BundleFinder;
-import org.eclipse.ecf.osgi.serviceregistry.launch.ClasspathBundleFinder;
 import org.osgi.framework.launch.Framework;
 import org.osgi.framework.launch.FrameworkFactory;
 
@@ -28,14 +23,7 @@ public class ConnectServiceRegistryFrameworkFactory implements FrameworkFactory 
 				.load(ServiceRegistryFactory.class).iterator().next();
 		ConnectServiceRegistry serviceRegistry = (ConnectServiceRegistry) serviceRegistryFactory
 				.newServiceRegistry(configuration);
-		List<BundleFinder> bsList = new ArrayList<BundleFinder>();
-		for (Iterator<BundleFinder> i = ServiceLoader.load(BundleFinder.class)
-				.iterator(); i.hasNext();)
-			bsList.add(i.next());
-		if (bsList.size() == 0)
-			bsList.add(new ClasspathBundleFinder());
-		return new ConnectServiceRegistryFramework(configuration, serviceRegistry,
-				bsList);
+		return new ConnectServiceRegistryFramework(serviceRegistry);
 	}
 
 }

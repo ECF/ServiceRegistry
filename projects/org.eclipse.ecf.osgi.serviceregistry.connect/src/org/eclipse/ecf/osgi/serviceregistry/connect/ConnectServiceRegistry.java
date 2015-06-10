@@ -9,11 +9,12 @@
  ******************************************************************************/
 package org.eclipse.ecf.osgi.serviceregistry.connect;
 
-import java.util.ArrayList;
+import static org.eclipse.ecf.osgi.serviceregistry.connect.ConnectServiceRegistryFactory.convertBundleDescriptors;
+
 import java.util.Collection;
 import java.util.Dictionary;
-import java.util.List;
 
+import org.apache.felix.connect.PojoSR;
 import org.eclipse.ecf.osgi.serviceregistry.ServiceRegistry;
 import org.eclipse.ecf.osgi.serviceregistry.launch.BundleDescriptor;
 import org.osgi.framework.BundleContext;
@@ -25,23 +26,12 @@ import org.osgi.framework.ServiceObjects;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.ServiceRegistration;
 
-import org.apache.felix.connect.PojoSR;
-
 public class ConnectServiceRegistry implements ServiceRegistry {
 
 	private final PojoSR pojoSR;
 
 	public ConnectServiceRegistry(PojoSR pojoSR) {
 		this.pojoSR = pojoSR;
-	}
-
-	List<org.apache.felix.connect.launch.BundleDescriptor> convertBundleDescriptors(
-			Collection<BundleDescriptor> bundles) {
-		List<org.apache.felix.connect.launch.BundleDescriptor> results = new ArrayList<org.apache.felix.connect.launch.BundleDescriptor>();
-		for (BundleDescriptor bd : bundles)
-			results.add(new org.apache.felix.connect.launch.BundleDescriptor(
-					bd.getClassLoader(), bd.getURL().toString(), bd.getHeaders()));
-		return results;
 	}
 
 	public void initBundles(Collection<BundleDescriptor> bundles)
