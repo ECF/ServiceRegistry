@@ -15,5 +15,5 @@
 <booleanAttribute key="org.eclipse.jdt.launching.DEFAULT_CLASSPATH" value="false"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.mycorp.examples.timeservice.sr.host.Main"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="com.mycorp.examples.timeservice.sr.host"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-DverboseRemoteServiceAdmin=true&#13;&#10;-Dservice.exported.configs=ecf.generic.server&#13;&#10;-Decf.generic.server.port=3288&#13;&#10;-Decf.generic.server.hostname=localhost&#13;&#10;-Decf.exported.async.interfaces=*"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-DverboseRemoteServiceAdmin=true&#13;&#10;-Dservice.exported.configs=ecf.generic.server&#13;&#10;-Decf.generic.server.port=3288&#13;&#10;-Decf.generic.server.hostname=localhost"/>
 </launchConfiguration>
