@@ -1,5 +1,6 @@
 package org.eclipse.ecf.osgi.serviceregistry.equinox;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ServiceLoader;
 
@@ -13,9 +14,9 @@ public class EquinoxServiceRegistryFactory implements ServiceRegistryFactory {
 
 	private static final long STOP_TIMEOUT = 3000;
 	
-	public ServiceRegistry newServiceRegistry(Map<String, String> configuration) {
+	public ServiceRegistry newServiceRegistry(Map<String, ?> configuration) {
 		FrameworkFactory frameworkFactory = ServiceLoader.load(FrameworkFactory.class).iterator().next();
-		final Framework framework = frameworkFactory.newFramework(configuration);
+		final Framework framework = frameworkFactory.newFramework(new HashMap<String,String>());
 		try {
 			framework.start();
 		} catch (BundleException e) {

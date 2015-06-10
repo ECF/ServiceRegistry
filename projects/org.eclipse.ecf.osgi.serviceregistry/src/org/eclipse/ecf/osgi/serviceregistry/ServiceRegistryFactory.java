@@ -13,5 +13,5 @@ import java.util.Map;
 
 public interface ServiceRegistryFactory {
 
-	ServiceRegistry newServiceRegistry(Map<String, String> configuration);
+	ServiceRegistry newServiceRegistry(Map<String, ?> configuration);
 }

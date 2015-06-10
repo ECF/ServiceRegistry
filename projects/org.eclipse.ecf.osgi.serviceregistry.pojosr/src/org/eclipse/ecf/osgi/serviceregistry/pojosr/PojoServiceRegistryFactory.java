@@ -20,7 +20,7 @@ public class PojoServiceRegistryFactory implements ServiceRegistryFactory {
 
 	@Override
 	public ServiceRegistry newServiceRegistry(
-			final Map<String, String> configuration) {
+			final Map<String, ?> configuration) {
 		try {
 			return new PojoServiceRegistry(new PojoSR(configuration));
 		} catch (Exception e) {
