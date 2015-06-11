@@ -7,10 +7,12 @@ import mycorp.examples.timeservice.ITimeService;
 
 import org.eclipse.ecf.osgi.serviceregistry.ServiceRegistry;
 import org.eclipse.ecf.osgi.serviceregistry.ServiceRegistryFactory;
+import org.eclipse.ecf.osgi.services.remoteserviceadmin.DebugRemoteServiceAdminListener;
 import org.eclipse.ecf.osgi.services.remoteserviceadmin.EndpointDescriptionReader;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.remoteserviceadmin.EndpointDescription;
 import org.osgi.service.remoteserviceadmin.RemoteServiceAdmin;
+import org.osgi.service.remoteserviceadmin.RemoteServiceAdminListener;
 import org.osgi.util.tracker.ServiceTracker;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
 
@@ -64,6 +66,11 @@ public class Main {
 		// Create service registry
 		serviceRegistry = ServiceLoader.load(ServiceRegistryFactory.class)
 				.iterator().next().newServiceRegistry(null);
+
+		// register debug listener. This is only needed so that the
+		// remote service registration information is printed to console
+		serviceRegistry.registerService(RemoteServiceAdminListener.class,
+				new DebugRemoteServiceAdminListener(), null);
 
 		// setup and open ServiceTracker. See the customizer member variable
 		// above
