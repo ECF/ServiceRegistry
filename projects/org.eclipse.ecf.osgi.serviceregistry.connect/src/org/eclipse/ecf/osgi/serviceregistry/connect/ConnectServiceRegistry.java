@@ -11,8 +11,10 @@ package org.eclipse.ecf.osgi.serviceregistry.connect;
 
 import static org.eclipse.ecf.osgi.serviceregistry.connect.ConnectServiceRegistryFactory.convertBundleDescriptors;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Dictionary;
+import java.util.List;
 
 import org.apache.felix.connect.PojoSR;
 import org.eclipse.ecf.osgi.serviceregistry.ServiceRegistry;
@@ -70,17 +72,18 @@ public class ConnectServiceRegistry implements ServiceRegistry {
 		return pojoSR.registerService(clazz, service, properties);
 	}
 
+	@SuppressWarnings("unchecked")
 	public <S> ServiceRegistration<S> registerService(Class<S> clazz,
 			S service, Dictionary<String, ?> properties) {
-		return null;
-		// pojoSR.registerService(clazz, service, properties);
+		return (ServiceRegistration<S>) pojoSR.registerService(clazz.getName(),
+				service, properties);
 	}
 
+	@SuppressWarnings("unchecked")
 	public <S> ServiceRegistration<S> registerService(Class<S> clazz,
 			ServiceFactory<S> factory, Dictionary<String, ?> properties) {
-		return null;
-		// pojoSR.registerService(new String[] { clazz.getName() }, factory,
-		// properties);
+		return (ServiceRegistration<S>) pojoSR.registerService(
+				new String[] { clazz.getName() }, factory, properties);
 	}
 
 	public ServiceReference<?>[] getServiceReferences(String clazz,
@@ -90,23 +93,31 @@ public class ConnectServiceRegistry implements ServiceRegistry {
 
 	public ServiceReference<?>[] getAllServiceReferences(String clazz,
 			String filter) throws InvalidSyntaxException {
-		return null;
-		// pojoSR.getAllServiceReferences(clazz, filter);
+		return pojoSR.getServiceReferences(clazz, filter);
 	}
 
 	public ServiceReference<?> getServiceReference(String clazz) {
 		return pojoSR.getServiceReference(clazz);
 	}
 
+	@SuppressWarnings("unchecked")
 	public <S> ServiceReference<S> getServiceReference(Class<S> clazz) {
-		return null;
-		// pojoSR.getServiceReference(clazz.getName());
+		return (ServiceReference<S>) pojoSR
+				.getServiceReference(clazz.getName());
 	}
 
+	@SuppressWarnings("unchecked")
 	public <S> Collection<ServiceReference<S>> getServiceReferences(
 			Class<S> clazz, String filter) throws InvalidSyntaxException {
-		return null;
-		// pojoSR.getServiceReferences(clazz, filter);
+		List<ServiceReference<S>> results = new ArrayList<ServiceReference<S>>();
+		@SuppressWarnings("rawtypes")
+		ServiceReference[] refs = pojoSR.getServiceReferences(clazz.getName(),
+				filter);
+		if (refs != null)
+			for (@SuppressWarnings("rawtypes")
+			ServiceReference sr : refs)
+				results.add(sr);
+		return results;
 	}
 
 	public <S> ServiceObjects<S> getServiceObjects(ServiceReference<S> reference) {

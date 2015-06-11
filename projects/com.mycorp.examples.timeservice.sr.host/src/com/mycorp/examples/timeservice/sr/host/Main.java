@@ -7,6 +7,7 @@ import org.eclipse.ecf.osgi.serviceregistry.ServiceRegistryFactory;
 
 public class Main {
 
+	@SuppressWarnings("unused")
 	private static ServiceRegistry serviceRegistry;
 
 	public static void main(String[] args) throws Exception {

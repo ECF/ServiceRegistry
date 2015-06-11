@@ -19,8 +19,7 @@ import de.kalpatec.pojosr.framework.PojoSR;
 public class PojoServiceRegistryFactory implements ServiceRegistryFactory {
 
 	@Override
-	public ServiceRegistry newServiceRegistry(
-			final Map<String, ?> configuration) {
+	public ServiceRegistry newServiceRegistry(final Map<String, ?> configuration) {
 		try {
 			return new PojoServiceRegistry(new PojoSR(configuration));
 		} catch (Exception e) {
