@@ -1,8 +1,8 @@
 package com.mycorp.examples.timeservice.sr.consumer.ds;
 
+import java.io.IOException;
 import java.util.ServiceLoader;
 
-import org.eclipse.ecf.core.util.PlatformHelper;
 import org.eclipse.ecf.osgi.serviceregistry.ServiceRegistry;
 import org.eclipse.ecf.osgi.serviceregistry.ServiceRegistryFactory;
 import org.eclipse.ecf.osgi.services.remoteserviceadmin.EndpointDescriptionReader;
@@ -14,40 +14,34 @@ public class Main {
 
 	private static ServiceRegistry serviceRegistry;
 
-	public static void main(String[] args) throws Exception {
-		// Create service registry
-		serviceRegistry = ServiceLoader.load(ServiceRegistryFactory.class)
-				.iterator().next().newServiceRegistry(null);
-
-		PlatformHelper.getPlatformAdapterManager();
-
-		// Read endpoint description from file
-		EndpointDescription[] eds = new EndpointDescriptionReader()
-				.readEndpointDescriptions(Main.class
-						.getResourceAsStream("timeserviceendpointdescription.xml"));
-
-		// Get RSA instance
+	private static RemoteServiceAdmin getRSA() {
 		ServiceTracker<RemoteServiceAdmin, RemoteServiceAdmin> rsaTracker = new ServiceTracker<RemoteServiceAdmin, RemoteServiceAdmin>(
 				serviceRegistry.getBundleContext(), RemoteServiceAdmin.class,
 				null);
 		rsaTracker.open();
 		RemoteServiceAdmin rsa = rsaTracker.getService();
 		rsaTracker.close();
+		return rsa;
+	}
 
-		// Import remote service
-		rsa.importService(eds[0]);
+	private static EndpointDescription readEndpointDescription(String fileName)
+			throws IOException {
+		return new EndpointDescriptionReader()
+				.readEndpointDescriptions(Main.class
+						.getResourceAsStream(fileName))[0];
+	}
 
-		Object w = new Object();
-		synchronized (w) {
-			// wait some time
-			try {
-				w.wait(6000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
+	public static void main(String[] args) throws Exception {
+		// Create service registry
+		serviceRegistry = ServiceLoader.load(ServiceRegistryFactory.class)
+				.iterator().next().newServiceRegistry(null);
 
-		serviceRegistry.shutdown();
+		// Read endpoint description from file
+		EndpointDescription ed = readEndpointDescription("timeserviceendpointdescription.xml");
+		// Get RSA instance
+		RemoteServiceAdmin rsa = getRSA();
+		// Import remote service. This will discover and
+		rsa.importService(ed);
 
 	}
 

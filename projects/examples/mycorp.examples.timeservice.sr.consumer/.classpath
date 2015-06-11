@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/mycorp.examples.timeservice"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.ecf.osgi.serviceregistry"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.ecf.osgi.serviceregistry.connect"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.ecf.osgi.serviceregistry.remoteservices"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
