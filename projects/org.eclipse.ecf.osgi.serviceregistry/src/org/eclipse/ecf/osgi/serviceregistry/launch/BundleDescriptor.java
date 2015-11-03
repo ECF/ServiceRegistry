@@ -32,6 +32,14 @@ public class BundleDescriptor {
 		this.headers = headers;
 	}
 
+	public BundleDescriptor(ClassLoader cl, URL url) {
+		this(cl, url, null);
+	}
+	
+	public BundleDescriptor(URL url) {
+		this(BundleDescriptor.class.getClassLoader(),url);
+	}
+	
 	public ClassLoader getClassLoader() {
 		return this.classLoader;
 	}
