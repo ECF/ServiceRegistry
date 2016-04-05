@@ -3,6 +3,7 @@ package org.eclipse.ecf.osgi.serviceregistry;
 import java.util.Collection;
 import java.util.Dictionary;
 
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.InvalidSyntaxException;
@@ -100,7 +101,16 @@ public class ServiceRegistryImpl implements ServiceRegistry {
 	}
 
 	public void shutdown() throws BundleException {
+		Bundle[] bundles = this.framework.getBundleContext().getBundles();
+		for(Bundle b: bundles) {
+			if (b.getBundleId() > 0 && b.getState() == Bundle.ACTIVE) try {
+				b.stop();
+			} catch (BundleException e) {
+				e.printStackTrace();
+			}
+		}
 		this.framework.stop();
+
 	}
 
 }
