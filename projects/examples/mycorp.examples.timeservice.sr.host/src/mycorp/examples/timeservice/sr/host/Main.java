@@ -38,6 +38,7 @@ public class Main {
 		serviceRegistry.registerService(ITimeService.class,
 				new TimeServiceImpl(), props);
 
+		System.out.println("TimeService registered");
 	}
 
 	private static Dictionary<String, Object> createRemoteServiceProperties() {
