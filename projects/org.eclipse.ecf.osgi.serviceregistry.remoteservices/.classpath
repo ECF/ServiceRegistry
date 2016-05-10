@@ -14,7 +14,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/gogo/org.apache.felix.gogo.shell_0.10.0.v201212101605.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/equinox/org.eclipse.osgi.services_3.4.0.v20140312-2051.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/ecf/core/org.eclipse.ecf.remoteservice.asyncproxy_1.0.100.v20150702-1411.jar"/>
-	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="lib" path="lib/ecf/core/org.eclipse.ecf_3.8.0.v20160405-1820.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/ecf/core/org.eclipse.ecf.identity_3.7.0.v20160405-1820.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/ecf/core/org.eclipse.ecf.discovery_5.0.200.v20160405-1820.jar"/>
