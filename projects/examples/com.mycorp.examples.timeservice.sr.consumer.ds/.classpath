@@ -5,6 +5,5 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.ecf.osgi.serviceregistry.connect"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.ecf.osgi.serviceregistry.remoteservices"/>
 	<classpathentry kind="lib" path="com.mycorp.examples.timeservice_1.1.0.v20150810-1719.jar"/>
-	<classpathentry kind="lib" path="com.mycorp.examples.timeservice.consumer.ds_1.0.0.v20150810-1719.jar" sourcepath="/com.mycorp.examples.timeservice.consumer.ds/src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

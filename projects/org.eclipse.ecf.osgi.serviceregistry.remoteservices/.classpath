@@ -4,27 +4,26 @@
 	<classpathentry exported="true" kind="lib" path="lib/equinox/org.eclipse.ecf.saxparserfactory_1.0.0.v20130605-1748.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/equinox/org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/equinox/org.eclipse.equinox.concurrent_1.1.0.v20130327-1442.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/equinox/org.eclipse.equinox.event_1.4.0.v20170105-1446.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ecf/rsa/org.eclipse.osgi.services.remoteserviceadmin_1.6.100.v20160907-0906.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/equinox/org.eclipse.equinox.log_1.2.300.v20130327-1442.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/equinox/org.apache.felix.scr_2.0.10.v20170501-2007.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/gogo/org.apache.felix.gogo.command_0.10.0.v201209301215.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/gogo/org.apache.felix.gogo.runtime_0.10.0.v201209301036.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/gogo/org.apache.felix.gogo.shell_0.10.0.v201212101605.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/equinox/org.apache.felix.scr_2.0.10.v20170501-2007.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/equinox/org.eclipse.core.jobs_3.9.2.v20171030-1027.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/equinox/org.eclipse.equinox.common_3.9.0.v20170207-1454.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/equinox/org.eclipse.equinox.event_1.4.0.v20170105-1446.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/equinox/org.eclipse.osgi.services_3.6.0.v20170228-1906.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/ecf/core/org.eclipse.ecf_3.8.0.v20170104-0657.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/ecf/core/org.eclipse.ecf.discovery_5.0.200.v20160905-1122.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/ecf/core/org.eclipse.ecf.identity_3.8.0.v20161203-2153.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/ecf/core/org.eclipse.ecf.remoteservice_8.12.0.v20170816-0246.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/ecf/core/org.eclipse.ecf.remoteservice.asyncproxy_1.0.100.v20160907-0906.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/ecf/core/org.eclipse.ecf.remoteservice.asyncproxy_2.0.100.v20160907-0906.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/ecf/core/org.eclipse.ecf.sharedobject_2.5.100.v20160906-2112.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/ecf/provider.generic/org.eclipse.ecf.provider_4.7.500.v20161010-0033.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/ecf/provider.generic/org.eclipse.ecf.provider.remoteservice_4.3.0.v20170630-1707.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/ecf/rsa/org.eclipse.ecf.osgi.services.distribution_2.1.0.v20160907-0906.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/ecf/rsa/org.eclipse.ecf.osgi.services.remoteserviceadmin_4.5.200.v20170731-0127.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ecf/provider.generic/org.eclipse.ecf.provider.remoteservice_4.3.0.v20170630-1707.jar" sourcepath="/org.eclipse.ecf.provider.remoteservice"/>
 	<classpathentry exported="true" kind="lib" path="lib/ecf/rsa/org.eclipse.ecf.osgi.services.remoteserviceadmin.proxy_1.0.0.v20160907-0906.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/ecf/rsa/org.eclipse.osgi.services.remoteserviceadmin_1.6.100.v20160907-0906.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ecf/rsa/org.eclipse.ecf.osgi.services.remoteserviceadmin_4.5.200.v20170731-0127.jar" sourcepath="/org.eclipse.ecf.osgi.services.remoteserviceadmin"/>
+	<classpathentry exported="true" kind="lib" path="lib/ecf/rsa/org.eclipse.ecf.osgi.services.distribution_2.1.0.v20160907-0906.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

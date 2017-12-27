@@ -15,8 +15,10 @@ import org.eclipse.ecf.osgi.serviceregistry.ServiceRegistry;
 import org.eclipse.ecf.osgi.serviceregistry.ServiceRegistryFactory;
 import org.eclipse.ecf.osgi.services.remoteserviceadmin.EndpointDescriptionReader;
 import org.osgi.service.remoteserviceadmin.EndpointDescription;
+import org.osgi.service.remoteserviceadmin.ImportRegistration;
 import org.osgi.service.remoteserviceadmin.RemoteServiceAdmin;
-import org.osgi.util.tracker.ServiceTracker;
+
+import com.mycorp.examples.timeservice.ITimeService;
 
 public class Main {
 
@@ -26,21 +28,27 @@ public class Main {
 				.iterator().next().newServiceRegistry(null);
 
 		// Get RSA instance
-		ServiceTracker<RemoteServiceAdmin, RemoteServiceAdmin> rsaTracker = new ServiceTracker<RemoteServiceAdmin, RemoteServiceAdmin>(
-				serviceRegistry.getBundleContext(), RemoteServiceAdmin.class,
-				null);
-		rsaTracker.open();
-		RemoteServiceAdmin rsa = rsaTracker.getService();
-		rsaTracker.close();
+		RemoteServiceAdmin rsa = serviceRegistry.getService(serviceRegistry.getServiceReference(RemoteServiceAdmin.class));
 		
 		// Read endpoint description from file
 		EndpointDescription ed = new EndpointDescriptionReader()
 		.readEndpointDescriptions(Main.class
 				.getResourceAsStream("timeserviceendpointdescription.xml"))[0];
 		
-		// Import the remote service
-		rsa.importService(ed);
-
+		// Import the remote service using endpoint description
+		ImportRegistration reg = rsa.importService(ed);
+		System.out.println("import registration="+reg);
+		// Check for import error
+		Throwable t = reg.getException();
+		if (t != null) {
+			t.printStackTrace();
+			throw new Exception("Could not import remote service",t);
+		}
+		// No error, so we are good to use the imported service
+		// Get imported service instance
+		ITimeService ts = (ITimeService)serviceRegistry.getService(reg.getImportReference().getImportedService());
+		// And then call it
+		System.out.println("time service result="+ts.getCurrentTime());
 	}
 
 }
